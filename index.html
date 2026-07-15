@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Daily Check-in</title>
+<meta name="theme-color" content="#161826">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Check-in">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ HOME ============ -->
+  <section id="view-home" class="view">
+    <div class="home-body scr">
+      <div class="kicker" id="home-weekday"></div>
+      <div class="big-date" id="home-date"></div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-value accent" id="stat-streak">0</div>
+          <div class="stat-label">day streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg">–</div>
+          <div class="stat-label">avg log</div>
+        </div>
+      </div>
+
+      <div class="week-strip" id="home-week"></div>
+
+      <div class="spacer"></div>
+
+      <div class="status-card">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="status-text" id="status-text"></span>
+      </div>
+      <button class="btn-primary" id="btn-log"></button>
+      <button class="btn-ghost" id="btn-history">View history →</button>
+    </div>
+  </section>
+
+  <!-- ============ CHECK-IN ============ -->
+  <section id="view-checkin" class="view">
+    <header class="checkin-header">
+      <span class="header-date" id="checkin-date"></span>
+      <button class="btn-close" data-nav="home">Close</button>
+    </header>
+    <div class="checkin-body scr" id="checkin-body">
+      <div class="section-heading first">State</div>
+      <div class="scale-card" id="state-scales"></div>
+
+      <div class="section-heading">Mood &amp; state · optional</div>
+      <div class="pill-row" id="state-tags"></div>
+
+      <div class="section-heading">Body</div>
+      <div class="scale-card" id="body-scales"></div>
+
+      <div class="section-heading">Exertion type · tap all that apply</div>
+      <div class="pill-row" id="ex-types"></div>
+
+      <div class="section-heading">Supplements · tap what you took</div>
+      <div class="pill-row" id="supplements"></div>
+
+      <div class="section-heading">Today · tap all that apply</div>
+      <div class="pill-row" id="chips"></div>
+
+      <div class="section-heading">Note · optional</div>
+      <textarea id="note" placeholder="Anything worth flagging…"></textarea>
+    </div>
+    <div class="submit-bar">
+      <button class="btn-primary" id="btn-submit">Log today</button>
+    </div>
+  </section>
+
+  <!-- ============ SUBMITTED ============ -->
+  <section id="view-submitted" class="view">
+    <div class="submitted-center">
+      <div class="check-circle"><span>✓</span></div>
+      <div class="submitted-title" id="submitted-title"></div>
+      <div class="submitted-sub" id="submitted-sub"></div>
+      <div class="week-strip small" id="submitted-week"></div>
+    </div>
+    <div class="submitted-actions">
+      <button class="btn-secondary" data-nav="history">View history</button>
+      <button class="btn-ghost" data-nav="home">Done</button>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section id="view-history" class="view">
+    <div class="history-body scr">
+      <div class="history-header">
+        <span class="history-month" id="history-month"></span>
+        <button class="btn-close" data-nav="home">Close</button>
+      </div>
+      <div class="history-summary" id="history-summary"></div>
+
+      <div class="cal-grid" id="calendar"></div>
+
+      <div class="legend">
+        <span><span class="legend-swatch logged"></span>logged</span>
+        <span><span class="legend-swatch gap"></span>gap</span>
+        <span><span class="legend-swatch today"></span>today</span>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-title">Energy · last 14 logged</div>
+        <div class="trend-bars" id="energy-bars"></div>
+      </div>
+
+      <button class="btn-export" id="btn-export">↓ Export for Claude (CSV)</button>
+      <div class="export-hint" id="export-hint">Local-first · nothing leaves your phone until you export</div>
+    </div>
+  </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
